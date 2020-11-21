@@ -22,13 +22,13 @@ class MainController extends AbstractController
 //        var_dump($this->transport);
         if(php_sapi_name() == "cli"){
             echo "Dziękuje za uruchomienie mnie z konsoli :) \n";
-            $this->console($this->transport);
+            $this->console($this->transport, $machines, $packageInfo);
 
         }
 
-            var_dump($this->transport);
-        echo "Maszyny \n";
-        var_dump($this->getMachines());
+//            var_dump($this->transport);
+
+//        var_dump($this->getMachines());
             return $this->render('main/index.html.twig', [
                 'package_info' => $packageInfo,
                 'packages' => $packages,
@@ -67,7 +67,6 @@ class MainController extends AbstractController
 
                     }else{
                         $rest[$key] = $value;
-//                        var_dump($test);
                         unset($key);
                     }
                 }
@@ -79,12 +78,18 @@ class MainController extends AbstractController
 
         }
 
-        public function console($data){
+        public function console($data, $machines, $packageInfo){
 
-        echo "Paczki: \n";
+        echo "Paczki: ".$packageInfo->num_of_packages."\n";
+        $i = 1;
         foreach ($data as $paczki){
+            echo "Samochód ".$i."\n";
             print_r($paczki);
+            $i++;
         }
+
+        echo "Samolot: \n";
+        print_r($machines);
 
         die;
         }

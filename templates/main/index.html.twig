@@ -4,9 +4,10 @@
 
 {% block body %}
 
-    {% dump packages %}
     <h2>Ilość przywiezionych paczek: {{ package_info.num_of_packages }}</h2>
+
     {% for index,value in packages %}
+        <div style="float: left; padding: 0 30px;">
         <h3>Samochod {{ index +1 }}</h3>
     <table>
         <thead>
@@ -28,6 +29,29 @@
 
         </tbody>
     </table>
+        </div>
     {% endfor %}
+
+<div style="padding: 0 30px;">
+    <h3>Samolot</h3>
+    <table>
+        <thead>
+        <tr>
+            <th>Numer Paczki</th>
+            <th>Waga Paczki</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        {% for key,val in machines %}
+            <tr>
+                <td>{{ key }}</td>
+                <td>{{ val }}</td>
+            </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
+</div>
 
 {% endblock %}
